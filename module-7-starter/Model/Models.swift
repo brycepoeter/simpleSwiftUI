@@ -33,3 +33,30 @@ struct CircleImage: View {
             .border(.black)
     }
 }
+
+// https://stackoverflow.com/questions/24701075/swift-convert-enum-value-to-string
+enum IssueState: CustomStringConvertible {
+    case open
+    case closed
+    
+    var description: String {
+        switch self {
+        case .open: return "Open"
+        case .closed: return "Closed"
+        }
+    }
+    
+    var iconName: String {
+        switch self {
+        case .open: return "lock.open"
+        case .closed: return "lock"
+        }
+    }
+    
+    var iconColor: Color {
+        switch self {
+        case .open: return Color.green
+        case .closed: return Color.red
+        }
+    }
+}

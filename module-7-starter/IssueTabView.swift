@@ -15,7 +15,6 @@ struct IssueTabView: View {
     var body: some View {
         NavigationView {
             List {
-
                 ForEach(issues) { issue in
                     NavigationLink {
                         IssueDetail(issue: issue)
@@ -23,8 +22,7 @@ struct IssueTabView: View {
                         HStack {
                             Image(systemName: issueState.iconName)
                                 .foregroundColor(
-                                    issueState == IssueState.open ?
-                                        .green : .red)
+                                    issueState.iconColor)
                             VStack {
                                 Text(issue.title ?? "😢")
                                     .bold()
@@ -40,31 +38,19 @@ struct IssueTabView: View {
         }
     }
 }
-//        NavigationView {
-//        List (issues) { item in
-//            NavigationLink("LocalizedStringKey") {
-//                IssueDetail()
-//            }
-//            HStack {
-//                Image(systemName: issueState.iconName)
-//                    .foregroundColor(.green)
-//                VStack {
-//                    Text(item.title ?? "😢")
-//                        .bold()
-//                        .lineLimit(2)
-//                    Text("@" + item.user.login)
-//                        .italic()
-//                }
-//            }
-//        }
-//        .navigationTitle(issueState.description + " Issues")
-//        }
-//    }
 
 
 struct IssueTabView_Previews: PreviewProvider {
     
     static var previews: some View {
-        IssueTabView(issues: GitHubIssues().closedIssues, issueState: IssueState.closed)
+        IssueTabView(issues: [GitHubIssue(title:
+                                            Optional("HDDS-6395. TestReconScmHASnapshot.testScmHASnapshot often fails"),
+                                          id: Optional(1155526144),
+                                          createdAt: Optional("2022-03-01T16:09:15Z"),
+                                          body: Optional("Sample Body"),
+                                          state: Optional("open"),
+                                          user: module_7_starter.GitHubUser(
+                                            login: "sodonnel", avatarUrl: Optional("https://avatars.githubusercontent.com/u/4558007?v=4")))],
+                     issueState: IssueState.closed)
     }
 }
